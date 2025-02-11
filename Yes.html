@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://www.transparenttextures.com/patterns/aged-paper.png'), url('https://source.unsplash.com/1600x900/?love,letter');
+            background-size: cover;
+	    background-color: pink;
+            text-align: center;
+            font-family: 'Dancing Script', normal;
+            color: #5a3e2b;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 60px;
+            background: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .message {
+            font-size: 24px;
+            background: rgba(255, 230, 204, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInMessage 3s ease-in-out forwards 1.5s;
+            display: none;
+            border: 2px solid #a67c52;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            width: 250px;
+            border-radius: 20px;
+            margin-top: 20px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 28px;
+            font-family: 'Great Vibes', cursive;
+            border: none;
+            cursor: pointer;
+            background: #d4a373;
+            color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #b5651d;
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes fadeInMessage {
+            from {opacity: 0; transform: scale(0.8);}
+            to {opacity: 1; transform: scale(1);}
+        }
+
+        /* Floating Hearts */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background: red;
+            clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 80%, 15% 100%, 0% 35%);
+            animation: floatUp 4s linear infinite;
+            opacity: 0.8;
+        }
+        @keyframes floatUp {
+            from {transform: translateY(0) scale(1);}
+            to {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+        }
+
+        /* Fireworks */
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            border-radius: 50%;
+            box-shadow: 0 0 10px gold, 0 0 20px orange, 0 0 30px red;
+            animation: explode 1.5s linear infinite;
+        }
+        @keyframes explode {
+            from {transform: scale(1);}
+            to {transform: scale(5); opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Yay! I knew you'd say yes! ❤️ Happy Valentine's!</h1>
+    <button class="btn" id="yesButton" onclick="playMusicAndShowMessage()">Yes</button>
+
+    <div id="valentineMessage" class="message">
+        <p>Thank you for choosing "Yes." <br>
+	I'm sorry it took me so long to ask you about this. I just really wanted to make something special just for you. 😁 <br>
+	You know how much I love you, right? <br>
+	Celebrating Valentine’s Day with you has always been one of my biggest wishes. <br>
+	I want to make that day so magical that every Valentine’s, we’ll look back at this moment and smile. <br>
+	See you this Valentine’s Day. I hope you're ready to see me again!  <br>
+	I love you so much, baby. 💖 </p>
+        <img src="1.jpg" alt="Happy Valentine">
+    </div>
+
+    <audio id="romanticMusic">
+        <source src="3.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="hearts"></div>
+
+    <script>
+        function playMusicAndShowMessage() {
+            document.getElementById('yesButton').classList.add('hidden'); // Hide the "Yes" button
+            document.getElementById('valentineMessage').style.display = 'block'; // Show the message
+            document.getElementById('romanticMusic').play(); // Play music
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.querySelector('.hearts').appendChild(heart);
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            setTimeout(() => heart.remove(), 4000);
+        }
+        setInterval(createHeart, 300);
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            document.body.appendChild(firework);
+            firework.style.left = Math.random() * 100 + "vw";
+            firework.style.top = Math.random() * 50 + "vh";
+            setTimeout(() => firework.remove(), 1500);
+        }
+        setInterval(createFirework, 700);
+    </script>
+
+</body>
+</html>
